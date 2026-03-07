@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Haneen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #f4f1ea; --text: #3d3d5c; }
+        .dark-mode { --bg: #1a1a1a; --text: #f4f1ea; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: background-color 0.5s, color 0.5s; 
+            overflow-x: hidden; 
+        }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        .project-card { border: 1px solid var(--text); border-radius: 15px; overflow: hidden; transition: transform 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); }
+
+        /* Page Entrance Animation */
+        .fade-in-up { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            animation: fadeInUp 0.8s forwards ease-out; 
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+
+    <nav class="flex justify-between items-center p-8 max-w-6xl mx-auto relative z-50">
+        <div class="text-2xl font-bold serif">H.</div>
+        
+        <div class="space-x-8 hidden md:flex">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="About.html" class="hover:underline">About</a>
+            <a href="#" class="font-bold underline">Projects</a>
+            <a href="contact.html" class="hover:underline">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <button id="darkModeBtn" class="p-2 border border-current rounded-full transition-all duration-300">
+                ☾ ⋆
+            </button>
+            <button id="menuToggle" class="md:hidden p-2 text-2xl">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="fixed inset-0 z-[100] flex flex-col items-center justify-center space-y-8 text-2xl serif transform translate-x-full transition-transform duration-500 ease-in-out md:hidden" style="background-color: var(--bg);">
+        <button id="closeMenu" class="absolute top-8 right-8 text-4xl p-4">✕</button>
+        <a href="index.html" class="menu-link hover:opacity-70 transition">Home</a>
+        <a href="About.html" class="menu-link hover:opacity-70 transition">About</a>
+        <a href="#" class="menu-link font-bold hover:opacity-70 transition">Projects</a>
+        <a href="contact.html" class="menu-link hover:opacity-70 transition">Contact</a>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-8 py-12 fade-in-up">
+        <h2 class="text-sm uppercase tracking-widest font-bold mb-12 italic text-center">Selected Works</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            
+            <div class="project-card bg-opacity-50 flex flex-col">
+                <div class="h-64 bg-slate-200 overflow-hidden">
+                    <img src="image.png" alt="ScienceNerd" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <div class="p-6 space-y-4">
+                    <h3 class="text-2xl font-bold serif">ScienceNerd</h3>
+                    <p class="opacity-80 text-sm">A web-based science simulation tool that processes PDF content to create interactive learning experiences.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 border border-current rounded">Tailwind CSS</span>
+                        <span class="text-xs px-2 py-1 border border-current rounded">JavaScript</span>
+                    </div>
+                    <a href="https://www.facebook.com/share/19kfk2nU4a/" class="inline-block mt-4 text-sm font-bold underline">View Case Study →</a>
+                </div>
+            </div>
+
+            <div class="project-card bg-opacity-50 flex flex-col">
+                <div class="h-64 bg-slate-300 overflow-hidden">
+                    <img src="img1.png" alt="Minimalist Portfolio" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <div class="p-6 space-y-4">
+                    <h3 class="text-2xl font-bold serif">Minimalist Portfolio</h3>
+                    <p class="opacity-80 text-sm">My Year 2 Final Project focused on high-end typography and a clean "Doodle" inspired UI.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 border border-current rounded">HTML5</span>
+                        <span class="text-xs px-2 py-1 border border-current rounded">Responsive Design</span>
+                    </div>
+                    <a href="https://github.com/whokilledevv/MyPortfolio" class="inline-block mt-4 text-sm font-bold underline">GitHub Repo →</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const body = document.body;
+        const btn = document.getElementById('darkModeBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        // Dark Mode Logic (Synced with Home Page)
+        function updateDarkMode() {
+            const isDark = body.classList.contains('dark-mode');
+            btn.innerHTML = isDark ? '☀︎' : '☾ ⋆';
+            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+        }
+
+        btn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            updateDarkMode();
+        });
+
+        if (localStorage.getItem('portfolio-theme') === 'dark') {
+            body.classList.add('dark-mode');
+            updateDarkMode();
+        }
+
+        // Mobile Menu Logic (Tailwind Class Toggling)
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            body.style.overflow = 'hidden'; 
+        });
+
+        const hideMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+            body.style.overflow = ''; 
+        };
+
+        closeMenu.addEventListener('click', hideMenu);
+        menuLinks.forEach(link => link.addEventListener('click', hideMenu));
+
+    </script>
+</body>
+</html>

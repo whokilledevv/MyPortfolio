@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Haneen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #f4f1ea; --text: #3d3d5c; }
+        .dark-mode { --bg: #1a1a1a; --text: #f4f1ea; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: background-color 0.5s, color 0.5s; 
+            overflow-x: hidden; 
+        }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        .timeline-border { border-left: 1px solid var(--text); }
+
+        /* Page Entrance Animation */
+        .fade-in-up { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            animation: fadeInUp 0.8s forwards ease-out; 
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+
+    <nav class="flex justify-between items-center p-8 max-w-6xl mx-auto relative z-50">
+        <div class="text-2xl font-bold serif">H.</div>
+        
+        <div class="space-x-8 hidden md:flex">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="#" class="font-bold underline">About</a>
+            <a href="Projects.html" class="hover:underline">Projects</a>
+            <a href="contact.html" class="hover:underline">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <button id="darkModeBtn" class="p-2 border border-current rounded-full transition-all duration-300">
+                ☾ ⋆
+            </button>
+            <button id="menuToggle" class="md:hidden p-2 text-2xl">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="fixed inset-0 z-[100] flex flex-col items-center justify-center space-y-8 text-2xl serif transform translate-x-full transition-transform duration-500 ease-in-out md:hidden" style="background-color: var(--bg);">
+        <button id="closeMenu" class="absolute top-8 right-8 text-4xl p-4">✕</button>
+        <a href="index.html" class="menu-link hover:opacity-70 transition">Home</a>
+        <a href="#" class="menu-link font-bold hover:opacity-70 transition">About</a>
+        <a href="Projects.html" class="menu-link hover:opacity-70 transition">Projects</a>
+        <a href="contact.html" class="menu-link hover:opacity-70 transition">Contact</a>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-8 py-12 grid md:grid-cols-2 gap-16 fade-in-up">
+        
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-sm uppercase tracking-widest font-bold mb-6 italic">Contact Details</h2>
+                <ul class="space-y-4 opacity-80">
+                    <li class="flex items-center gap-3">
+                        <span>⟟</span> October Gardens, Giza
+                    </li>
+                    <li>
+                        <a href="mailto:evvy121@gmail.com" class="hover:underline text-lg italic">✉ evvy121@gmail.com</a>
+                    </li>
+                    <li class="flex gap-4 pt-2">
+                        <a href="https://github.com/whokilledevv" target="_blank" class="px-4 py-1 border border-current rounded-full text-xs hover:bg-current hover:text-[var(--bg)] transition" rel="noopener">GitHub</a>
+                        <a href="https://www.linkedin.com/in/haneen-ahmed-53680536b/" target="_blank" class="px-4 py-1 border border-current rounded-full text-xs hover:bg-current hover:text-[var(--bg)] transition" rel="noopener">LinkedIn</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-sm uppercase tracking-widest font-bold mb-6 italic">Education</h2>
+                <div class="space-y-4">
+                    <div>
+                        <p class="font-bold text-xl">2024 - 2026</p>
+                        <p class="opacity-80">Applied Technology Student</p>
+                        <p class="text-sm italic">Information Technology Department</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-sm uppercase tracking-widest font-bold mb-6 italic">Core Skills</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-1 border border-current rounded-full text-sm">HTML/CSS</span>
+                    <span class="px-4 py-1 border border-current rounded-full text-sm">Tailwind CSS</span>
+                    <span class="px-4 py-1 border border-current rounded-full text-sm">JavaScript</span>
+                    <span class="px-4 py-1 border border-current rounded-full text-sm">Responsive Design</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-sm uppercase tracking-widest font-bold mb-6 italic">Experience</h2>
+                <div class="timeline-border pl-6 space-y-10">
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1 w-4 h-4 bg-current rounded-full ring-4 ring-[var(--bg)] transition-all"></span>
+                        <p class="font-bold text-xl">2026 - Present</p>
+                        <p class="text-lg serif italic">Frontend Lead | ScienceNerd</p>
+                        <p class="opacity-80 text-sm mt-2 leading-relaxed">
+                            Leading the development of a web-based science simulation tool. I focus on creating a smooth, responsive interface for processing complex educational content.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1 w-4 h-4 bg-current rounded-full opacity-40 ring-4 ring-[var(--bg)] transition-all"></span>
+                        <p class="font-bold text-xl">2025</p>
+                        <p class="text-lg serif italic">Web Development Foundations</p>
+                        <p class="opacity-80 text-sm mt-2 leading-relaxed">
+                            Mastered the essentials of frontend architecture, focusing on Bootstrap frameworks and modern CSS layouts for diverse devices.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const body = document.body;
+        const btn = document.getElementById('darkModeBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        // Dark Mode Logic (Synced across all pages)
+        function updateDarkMode() {
+            const isDark = body.classList.contains('dark-mode');
+            btn.innerHTML = isDark ? '☀︎' : '☾ ⋆';
+            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+        }
+
+        btn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            updateDarkMode();
+        });
+
+        if (localStorage.getItem('portfolio-theme') === 'dark') {
+            body.classList.add('dark-mode');
+            updateDarkMode();
+        }
+
+        // Mobile Menu Logic
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            body.style.overflow = 'hidden'; 
+        });
+
+        const hideMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+            body.style.overflow = ''; 
+        };
+
+        closeMenu.addEventListener('click', hideMenu);
+        menuLinks.forEach(link => link.addEventListener('click', hideMenu));
+    </script>
+</body>
+</html>

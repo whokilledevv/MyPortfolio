@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Haneen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #f4f1ea; --text: #3d3d5c; }
+        .dark-mode { --bg: #1a1a1a; --text: #f4f1ea; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: background-color 0.5s, color 0.5s; 
+            overflow-x: hidden; 
+        }
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Improved Input Styling */
+        input, textarea { 
+            background: transparent; 
+            border: 1.5px solid var(--text); 
+            border-radius: 12px; 
+            padding: 14px 18px; 
+            width: 100%; 
+            outline: none; 
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus { 
+            box-shadow: 0 0 0 4px rgba(61, 61, 92, 0.1);
+            border-color: #3d3d5c;
+        }
+        .dark-mode input:focus, .dark-mode textarea:focus {
+            box-shadow: 0 0 0 4px rgba(244, 241, 234, 0.1);
+            border-color: #f4f1ea;
+        }
+
+        .error-message { color: #ff4d4d; font-size: 0.75rem; margin-top: 4px; display: none; }
+
+        /* Page Entrance Animation */
+        .fade-in-up { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            animation: fadeInUp 0.8s forwards ease-out; 
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+
+    <nav class="flex justify-between items-center p-8 max-w-6xl mx-auto relative z-50">
+        <div class="text-2xl font-bold serif">H.</div>
+        
+        <div class="space-x-8 hidden md:flex">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="About.html" class="hover:underline">About</a>
+            <a href="Projects.html" class="hover:underline">Projects</a>
+            <a href="#" class="font-bold underline">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <button id="darkModeBtn" class="p-2 border border-current rounded-full transition-all duration-300">
+                ☾ ⋆
+            </button>
+            <button id="menuToggle" class="md:hidden p-2 text-2xl">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="fixed inset-0 z-[100] flex flex-col items-center justify-center space-y-8 text-2xl serif transform translate-x-full transition-transform duration-500 ease-in-out md:hidden" style="background-color: var(--bg);">
+        <button id="closeMenu" class="absolute top-8 right-8 text-4xl p-4">✕</button>
+        <a href="index.html" class="menu-link hover:opacity-70 transition">Home</a>
+        <a href="About.html" class="menu-link hover:opacity-70 transition">About</a>
+        <a href="Projects.html" class="menu-link hover:opacity-70 transition">Projects</a>
+        <a href="#" class="menu-link font-bold hover:opacity-70 transition">Contact</a>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-8 py-12 fade-in-up">
+        <div class="text-center mb-16">
+            <h2 class="text-6xl md:text-7xl serif mb-4">Get in Touch</h2>
+            <p class="opacity-70 italic text-lg">Have a question or want to work together?</p>
+        </div>
+
+        <form id="contactForm" class="space-y-6" novalidate>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-xs uppercase font-bold tracking-widest ml-1">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                    <span id="nameError" class="error-message">Please enter your name.</span>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-xs uppercase font-bold tracking-widest ml-1">Email Address</label>
+                    <input type="email" id="email" placeholder="hello@example.com">
+                    <span id="emailError" class="error-message">Please enter a valid email.</span>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="block text-xs uppercase font-bold tracking-widest ml-1">Message</label>
+                <textarea id="message" rows="5" placeholder="How can I help you today?"></textarea>
+                <span id="messageError" class="error-message">Message cannot be empty.</span>
+            </div>
+            
+            <button type="submit" class="w-full py-5 bg-[#3d3d5c] dark:bg-[#f4f1ea] dark:text-[#3d3d5c] text-[#f4f1ea] rounded-full font-bold hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                Send Message
+            </button>
+            <p id="successMessage" class="text-center text-green-600 font-bold hidden mt-4">✓ Message sent successfully!</p>
+        </form>
+
+        <div class="mt-24 flex justify-center space-x-12 opacity-60 text-sm font-semibold tracking-widest uppercase">
+            <a href="https://github.com/whokilledevv" target="_blank" class="hover:underline" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/haneen-ahmed-53680536b/" target="_blank" class="hover:underline" rel="noopener">LinkedIn</a>
+            <a href="https://wa.me/201027975904" target="_blank" class="hover:underline" rel="noopener">Whatsapp</a>
+        </div>
+    </main>
+
+    <script>
+        const body = document.body;
+        const btn = document.getElementById('darkModeBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const contactForm = document.getElementById('contactForm');
+
+        function updateDarkMode() {
+            const isDark = body.classList.contains('dark-mode');
+            btn.innerHTML = isDark ? '☀︎' : '☾ ⋆';
+            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+        }
+
+        btn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            updateDarkMode();
+        });
+
+        if (localStorage.getItem('portfolio-theme') === 'dark') {
+            body.classList.add('dark-mode');
+            updateDarkMode();
+        }
+
+        // Mobile Menu Logic
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            body.style.overflow = 'hidden'; 
+        });
+
+        const hideMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+            body.style.overflow = ''; 
+        };
+
+        closeMenu.addEventListener('click', hideMenu);
+        menuLinks.forEach(link => link.addEventListener('click', hideMenu));
+
+        // Form Validation
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+
+            if (name.value.trim() === "") {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else { document.getElementById('nameError').style.display = 'none'; }
+
+            if (!email.value.includes('@') || email.value.length < 5) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else { document.getElementById('emailError').style.display = 'none'; }
+
+            if (message.value.trim() === "") {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            } else { document.getElementById('messageError').style.display = 'none'; }
+
+            if (isValid) {
+                document.getElementById('successMessage').style.display = 'block';
+                contactForm.reset();
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
